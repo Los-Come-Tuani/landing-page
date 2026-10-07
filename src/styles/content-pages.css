@@ -1,0 +1,36 @@
+.footer-top--pages { grid-template-columns: 1.4fr repeat(3, 1fr); gap: 48px; }
+.footer-brand .footer-origin { margin-top: 24px; padding-top: 0; }
+.footer-brand .footer-origin p { margin: 0; font-size: .75rem; color: var(--route-green); }
+.footer-page-group h2 { font-family: Poppins, Arial, sans-serif; font-size: .75rem; font-weight: 600; line-height: 1.5; letter-spacing: .12em; text-transform: uppercase; color: var(--route-green); margin-bottom: 16px; }
+.footer-page-group ul { list-style: none; margin: 0; padding: 0; }
+.footer-page-group a, .footer-planned-page { display: flex; align-items: center; min-height: 44px; padding-block: 9px; font-size: .9375rem; line-height: 1.5; color: var(--text-primary); }
+.footer-planned-page { cursor: default; }
+.footer-pages-note { margin-top: 28px; color: var(--text-secondary); font-size: .75rem; }
+.footer-explore { display: flex; flex-wrap: wrap; gap: 4px 28px; margin-top: 12px; }
+.footer-explore a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: .75rem; color: var(--route-green); }
+@media (hover: hover) and (pointer: fine) {
+  .footer-explore a:hover, .footer-page-group a:hover { color: var(--action-primary); text-decoration: underline; text-underline-offset: 5px; }
+}
+.content-back { margin-bottom: 32px; }
+.content-page-heading { max-width: 800px; padding-bottom: 40px; border-bottom: 1px solid var(--border-default); }
+.content-page-heading h1 { font-size: clamp(2rem, 4vw, 3rem); }
+.content-page-heading > p { max-width: 65ch; margin-top: 24px; color: var(--text-secondary); }
+.content-page-heading .content-updated { font-size: .75rem; }
+.content-page-body { max-width: 70ch; margin-top: 40px; }
+.content-page-body > * + * { margin-top: 24px; }
+.content-page-body h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); margin-top: 40px; }
+.content-page-body a:not(.button) { color: var(--action-primary); text-decoration: underline; text-underline-offset: 4px; }
+.content-page-body ul, .content-page-body ol { padding-left: 24px; line-height: 1.7; }
+.content-page-body ul { list-style: disc; }
+.content-page-body ol { list-style: decimal; }
+@media (max-width: 959px) {
+  .footer-top--pages { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .footer-top--pages .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  .footer-top--pages { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+  .footer-page-group a, .footer-planned-page { font-size: .875rem; }
+  .footer-explore { gap: 0 24px; }
+  .content-page-heading { padding-bottom: 28px; }
+  .content-page-body { margin-top: 28px; }
+}

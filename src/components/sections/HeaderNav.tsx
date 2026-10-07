@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import logo from '@/assets/logotipo-kplan.svg';
 import { navItems } from '@/content/landing-content';
+import { homeAnchor } from '@/content/site-pages';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 export function HeaderNav() {
   const [open, setOpen] = useState(false);
@@ -20,16 +21,16 @@ export function HeaderNav() {
   return <header className="site-header">
     <a className="skip-link" href="#contenido">Saltar al contenido</a>
     <nav className="container nav" aria-label="Principal">
-      <a href="#inicio" className="brand" aria-label="K’plan, inicio"><img src={logo} width={100} height={46} alt="K’plan" /></a>
-      <div className="nav-links">{navItems.map(item => <a href={item.href} key={item.href}>{item.label}</a>)}</div>
-      <div className="nav-actions"><ButtonLink href="#piloto" className="nav-cta">Unirme al piloto</ButtonLink>
+      <a href={homeAnchor('#inicio')} className="brand" aria-label="K’plan, inicio"><img src={logo} width={100} height={46} alt="K’plan" /></a>
+      <div className="nav-links">{navItems.map(item => <a href={homeAnchor(item.href)} key={item.href}>{item.label}</a>)}</div>
+      <div className="nav-actions"><ButtonLink href={homeAnchor('#piloto')} className="nav-cta">Unirme al piloto</ButtonLink>
         <button ref={trigger} type="button" className="icon-button menu-trigger" aria-expanded={open} aria-controls="mobile-navigation"
           aria-label={open ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setOpen(v => !v)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button>
       </div>
       <div ref={panel} className="mobile-navigation" id="mobile-navigation" data-open={open} inert={!open}
         onBlur={e => { if (open && e.relatedTarget && !e.currentTarget.contains(e.relatedTarget as Node) && e.relatedTarget !== trigger.current) close(); }}>
-        {navItems.map(item => <a href={item.href} key={item.href} onClick={() => close()}>{item.label}<ArrowUpRight size={18} aria-hidden="true" /></a>)}
-        <a href="#piloto" onClick={() => close()}>Unirme al piloto<ArrowUpRight size={18} aria-hidden="true" /></a>
+        {navItems.map(item => <a href={homeAnchor(item.href)} key={item.href} onClick={() => close()}>{item.label}<ArrowUpRight size={18} aria-hidden="true" /></a>)}
+        <a href={homeAnchor('#piloto')} onClick={() => close()}>Unirme al piloto<ArrowUpRight size={18} aria-hidden="true" /></a>
       </div>
     </nav>
   </header>;
