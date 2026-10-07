@@ -8,5 +8,6 @@ import '@fontsource/poppins/latin-700.css';
 import '@fontsource/inknut-antiqua/latin-600.css';
 import '@/styles/index.css';
 import '@/styles/landing.css';
+import '@/styles/territory.css';
 import '@/styles/content-pages.css';
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>);
