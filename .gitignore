@@ -8,4 +8,5 @@ output/
 !.env.example
 .DS_Store
 Thumbs.db
-scripts
+/scripts
+site

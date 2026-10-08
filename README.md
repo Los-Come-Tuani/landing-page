@@ -1,10 +1,40 @@
-# K’plan — landing v2
+<div align="center">
+  <img
+    src="docs/banner.svg"
+    width="300"
+    height="125"
+    style="padding: 10px;"
+  />
+</div>
 
-Landing implementada con React 19, TypeScript, Vite y Tailwind. Presenta el producto mediante fotografía de Nicaragua, pantallas reales de la app y una demostración manual. Incluye menú móvil, detalles de experiencias, preguntas frecuentes y formularios diferenciados para negocios y traductores/guías.
+<h1 align="center">
+  <code>kplan-landing</code>
+</h1>
+
+<h3 align="center">
+  Landing page de la aplicación móvil <code>k'plan</code>
+</h3>
+
+<div align="center">
+
+[![React.][react-badge]][react-docs]
+[![TypeScript.][typescript-badge]][typescript-docs]
+[![Vite.][vite-badge]][vite-docs]
+<br/>
+[![Tailwind CSS.][tailwind-badge]][tailwind-docs]
+[![pnpm.][pnpm-badge]][pnpm-docs]
+[![Vercel.][vercel-badge]][vercel-docs]
+
+</div>
+
+Landing implementada con React 19, TypeScript, Vite y Tailwind. Presenta el
+producto mediante fotografía de Nicaragua, pantallas reales de la app y una
+demostración manual. Incluye menú móvil, detalles de experiencias, preguntas
+frecuentes y formularios diferenciados para negocios y traductores/guías.
 
 ## Desarrollo
 
-Con Node compatible con Vite y pnpm 11:
+Con [`node`][node] compatible con Vite y pnpm 11:
 
 ```sh
 pnpm install
@@ -14,14 +44,20 @@ pnpm build
 pnpm preview
 ```
 
-`dist/` es la salida de producción. No requiere claves, correo ni servicios externos para la vista previa actual. En este equipo, si pnpm detecta un store distinto del existente, usar `--store-dir C:/Users/USUARIO/AppData/Local/pnpm/store` al instalar.
+`dist/` es la salida de producción. No requiere claves, correo ni servicios
+externos para la vista previa actual. En este equipo, si pnpm detecta un
+store distinto del existente, usar
+`--store-dir C:/Users/USUARIO/AppData/Local/pnpm/store` al instalar.
 
 ## Deploy en Vercel
 
 La configuración está lista para dos formas de importación:
 
-- Si conectás la carpeta raíz del proyecto, Vercel usará `../vercel.json`, instalará y compilará dentro de `LandingPage`, y publicará `LandingPage/dist`.
-- Si conectás directamente `LandingPage` como root directory, Vercel usará `vercel.json` local y publicará `dist`.
+- Si conectás la carpeta raíz del proyecto, Vercel usará `../vercel.json`,
+  instalará y compilará dentro de `LandingPage`, y publicará
+  `LandingPage/dist`.
+- Si conectás directamente `LandingPage` como root directory, Vercel usará
+  `vercel.json` local y publicará `dist`.
 
 Valores esperados en Vercel:
 
@@ -33,37 +69,41 @@ Output Directory: dist
 Node.js: 22.x
 ```
 
-La landing es una SPA, por eso las rutas se reescriben a `/index.html`. Los assets compilados en `/assets` y las imágenes de `/media` quedan con cache largo e inmutable.
-
-## Estructura y contratos
-
-- `src/app/App.tsx`: composición y perfil de participación.
-- `src/content/landing-content.ts`: navegación, demo, experiencias, FAQ y créditos.
-- `src/components/sections/`: secciones de la landing.
-- `src/components/forms/ParticipationForm.tsx`: validación y revisión local.
-- `src/components/ui/`: enlaces, pantallas, imágenes y diálogo nativo.
-- `src/styles/landing.css`: tokens y diseño adaptable; Tailwind usa las mismas variables.
-- `public/media/`: exportaciones WebP optimizadas.
-
-Los formularios **no envían ni guardan datos**. La acción permite revisar y volver a editar; cambiar de perfil conserva cada borrador en memoria. Recargar los descarta. Esto responde a la decisión del usuario de posponer el destino del correo y el backend. No confundir esta revisión con una inscripción al piloto.
-
-## Verificación reproducible
-
-```sh
-pnpm build
-node scripts/serve-audit.cjs
-```
-
-Abrir `http://127.0.0.1:4173/` para el build y `http://127.0.0.1:4173/?audit` para la auditoría local. El panel mide LCP/CLS y eventos, fuerza las mismas reglas CSS de movimiento reducido y permite ralentizar animaciones a 5×. No forma parte de `dist`. El máximo de eventos es un diagnóstico, no el INP de campo; la medición depende del equipo y la red.
-
-Probar menú con Tab/Enter/Escape, pasos rápidos de demo, detalles de ciudades, FAQ con teclado, errores de campos, revisión y conservación entre perfiles. Revisar 320, 375/390, 768, 1024 y 1440 px y pantalla baja. El informe registra lo comprobado y las limitaciones del navegador usado.
+La landing es una SPA, por eso las rutas se reescriben a `/index.html`. Los
+assets compilados en `/assets` y las imágenes de `/media` quedan con cache
+largo e inmutable.
 
 ## Documentación
 
-- [Sistema visual y comportamiento](DESIGN.md).
-- [Inventario y licencias](ASSETS.md).
-- [Verificación final](output/verification/VERIFICACION.md).
-- [Plan aprobado](../DocumentacionInvestigacionApoyoVisual/plan-reestructuracion-landing-v2.md).
-- [Revisión de movimiento](../plans/001-movimiento-landing-v2.md).
+Este README cubre lo esencial para desarrollar y desplegar. La
+documentación expandida vive en [`docs/`](docs/index.md) y se genera con
+[Zensical][zensical-docs]:
 
-Las fuentes SVG y los documentos anteriores se conservan como material de referencia. Publicar la landing y activar envíos son trabajos posteriores; no se incluyen en la entrega local.
+```sh
+uvx zensical serve
+```
+
+- [Guía de desarrollo](docs/guia/index.md): instalación, scripts, despliegue
+  y verificación reproducible (auditoría de rendimiento, pruebas del juego
+  de la página 404, verificación de las páginas del footer).
+- [Arquitectura](docs/arquitectura/index.md): estructura del código,
+  contrato de los formularios y sistema de páginas del footer.
+- [Sistema de diseño](docs/diseno/index.md): composición, tokens,
+  formularios, movimiento y la página 404.
+- [Activos](docs/activos/index.md): inventario de recursos, licencias y el
+  mapa interactivo de ciudades creativas.
+
+[node]: https://nodejs.org/
+[pnpm-badge]: https://img.shields.io/badge/pnpm-white?style=for-the-badge&color=gray&logoColor=white&logo=pnpm
+[pnpm-docs]: https://pnpm.io/
+[react-badge]: https://img.shields.io/badge/react-white?style=for-the-badge&color=gray&logoColor=white&logo=react
+[react-docs]: https://react.dev/
+[tailwind-badge]: https://img.shields.io/badge/tailwindcss-white?style=for-the-badge&color=gray&logoColor=white&logo=tailwindcss
+[tailwind-docs]: https://tailwindcss.com/
+[typescript-badge]: https://img.shields.io/badge/typescript-white?style=for-the-badge&color=gray&logoColor=white&logo=typescript
+[typescript-docs]: https://www.typescriptlang.org/
+[vercel-badge]: https://img.shields.io/badge/vercel-white?style=for-the-badge&color=gray&logoColor=white&logo=vercel
+[vercel-docs]: https://vercel.com/docs
+[vite-badge]: https://img.shields.io/badge/vite-white?style=for-the-badge&color=gray&logoColor=white&logo=vite
+[vite-docs]: https://vite.dev/
+[zensical-docs]: https://zensical.org/
