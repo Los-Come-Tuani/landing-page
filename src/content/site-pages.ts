@@ -9,13 +9,13 @@ export type SitePage = {
   status: 'planned' | 'published';
 };
 
-// Roadmap only. Publish together with the real page, its route and reviewed content.
+// Publish together with the real page, its route and reviewed content.
 // Never point a published entry to an empty page or an anchor on the landing.
 export const sitePages: SitePage[] = [
-  { title: 'Sobre nosotros', path: '/empresa/sobre-nosotros', group: 'Empresa', template: 'editorial', purpose: 'Qué es K’plan, a quién conecta y en qué etapa se encuentra.', status: 'planned' },
-  { title: 'Misión', path: '/empresa/mision', group: 'Empresa', template: 'editorial', purpose: 'Descubrimiento cultural, talento local y valor para las comunidades.', status: 'planned' },
+  { title: 'Sobre nosotros', path: '/empresa/sobre-nosotros', group: 'Empresa', template: 'editorial', purpose: 'Qué es K’plan, a quién conecta y en qué etapa se encuentra.', status: 'published' },
+  { title: 'Misión', path: '/empresa/mision', group: 'Empresa', template: 'editorial', purpose: 'Descubrimiento cultural, talento local y valor para las comunidades.', status: 'published' },
   { title: 'Blog', path: '/blog', group: 'Empresa', template: 'blog', purpose: 'Índice de historias y novedades, con artículos en /blog/:slug.', status: 'planned' },
-  { title: 'Contacto', path: '/contacto', group: 'Empresa', template: 'contact', purpose: 'Canales reales de contacto y orientación por tipo de consulta.', status: 'planned' },
+  { title: 'Contacto', path: '/contacto', group: 'Empresa', template: 'contact', purpose: 'Correo público para consultas sobre K’plan y el piloto.', status: 'published' },
   { title: 'Términos', path: '/legal/terminos', group: 'Legal', template: 'legal', purpose: 'Condiciones del servicio que esté efectivamente disponible.', status: 'planned' },
   { title: 'Privacidad', path: '/legal/privacidad', group: 'Legal', template: 'legal', purpose: 'Datos tratados, finalidad, conservación y canales para ejercer derechos.', status: 'planned' },
   { title: 'Cookies', path: '/legal/cookies', group: 'Legal', template: 'legal', purpose: 'Tecnologías utilizadas y controles que realmente existan.', status: 'planned' },

@@ -4,7 +4,9 @@
 .footer-page-group h2 { font-family: Poppins, Arial, sans-serif; font-size: .75rem; font-weight: 600; line-height: 1.5; letter-spacing: .12em; text-transform: uppercase; color: var(--route-green); margin-bottom: 16px; }
 .footer-page-group ul { list-style: none; margin: 0; padding: 0; }
 .footer-page-group a, .footer-planned-page { display: flex; align-items: center; min-height: 44px; padding-block: 9px; font-size: .9375rem; line-height: 1.5; color: var(--text-primary); }
-.footer-planned-page { cursor: default; }
+.footer-planned-page { cursor: default; flex-direction: column; align-items: flex-start; color: var(--text-secondary); }
+.footer-planned-label { font-size: .6875rem; line-height: 1.5; }
+.footer-page-group a[aria-current="page"] { color: var(--action-primary); text-decoration: underline; text-underline-offset: 4px; }
 .footer-pages-note { margin-top: 28px; color: var(--text-secondary); font-size: .75rem; }
 .footer-explore { display: flex; flex-wrap: wrap; gap: 4px 28px; margin-top: 12px; }
 .footer-explore a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: .75rem; color: var(--route-green); }
@@ -23,6 +25,17 @@
 .content-page-body ul, .content-page-body ol { padding-left: 24px; line-height: 1.7; }
 .content-page-body ul { list-style: disc; }
 .content-page-body ol { list-style: decimal; }
+.content-page { min-height: 60vh; }
+.content-page-body section + section { margin-top: 48px; }
+.content-page-body section > * + * { margin-top: 20px; }
+.content-page-body section > h2:first-child { margin-top: 0; }
+.content-audiences li + li { margin-top: 16px; }
+.content-closing { padding-top: 32px; border-top: 1px solid var(--border-default); }
+.content-closing .text-link { display: flex; width: fit-content; }
+.content-eyebrow { font-size: .875rem; font-weight: 500; color: var(--route-green); }
+.content-contact { font-style: normal; }
+.content-contact span { display: block; color: var(--text-secondary); font-size: .875rem; margin-bottom: 12px; }
+.content-contact a { display: inline-flex; align-items: center; min-height: 44px; font-size: clamp(1rem, 3vw, 1.5rem); font-weight: 500; overflow-wrap: anywhere; }
 @media (max-width: 959px) {
   .footer-top--pages { grid-template-columns: repeat(3, 1fr); gap: 32px; }
   .footer-top--pages .footer-brand { grid-column: 1 / -1; }

@@ -1,4 +1,12 @@
 import { useState } from 'react';
+import { createBrowserRouter, Outlet, ScrollRestoration } from 'react-router';
+import { RouterProvider } from 'react-router/dom';
+import { PageMetadata } from '@/components/layout/PageMetadata';
+import { RouteFocus } from './RouteFocus';
+import { AboutPage } from './pages/AboutPage';
+import { MissionPage } from './pages/MissionPage';
+import { ContactPage } from './pages/ContactPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { CreativeCities } from '@/components/sections/CreativeCities';
 import { EcosystemSection } from '@/components/sections/EcosystemSection';
 import { FinalCta } from '@/components/sections/FinalCta';
@@ -9,9 +17,10 @@ import { ProductDemo } from '@/components/sections/ProductDemo';
 import { PilotFaq } from '@/components/sections/PilotFaq';
 import type { ParticipantProfile } from '@/types/landing';
 
-export function App() {
+function LandingPage() {
   const [profile, setProfile] = useState<ParticipantProfile>('negocio');
-  return <SiteLayout>
+  return <>
+      <PageMetadata title="K’plan · La Nicaragua creativa, en tu próximo plan" description="Descubrí la propuesta de K’plan: circuitos, lugares, eventos y talento local para explorar Nicaragua. Conocé la app y el piloto en preparación." />
       <HeroSection />
       <ProductDemo />
       <CreativeCities />
@@ -19,5 +28,20 @@ export function App() {
       <EcosystemSection onChoose={setProfile} />
       <PilotFaq />
       <FinalCta profile={profile} onChoose={setProfile} />
-  </SiteLayout>;
+  </>;
+}
+
+const router = createBrowserRouter([{
+  element: <><SiteLayout><Outlet /></SiteLayout><RouteFocus /><ScrollRestoration /></>,
+  children: [
+    { path: '/', element: <LandingPage /> },
+    { path: '/empresa/sobre-nosotros', element: <AboutPage /> },
+    { path: '/empresa/mision', element: <MissionPage /> },
+    { path: '/contacto', element: <ContactPage /> },
+    { path: '*', element: <NotFoundPage /> },
+  ],
+}]);
+
+export function App() {
+  return <RouterProvider router={router} />;
 }
