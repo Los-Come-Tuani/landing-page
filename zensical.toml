@@ -1,0 +1,148 @@
+[project]
+  extra_css = [
+    "stylesheets/theme.css",
+    "stylesheets/width.css",
+  ]
+
+  extra_javascript = ["scripts/elk.mjs"]
+
+  repo_name = "Los-Come-Tuani/landing-page"
+  repo_url  = "https://github.com/Los-Come-Tuani/landing-page"
+
+  site_author      = "Joaquín Zúñiga"
+  site_description = "Documentación de la landing page de la aplicación móvil k'plan"
+  site_name        = "landing-docs"
+
+  nav = [
+    { "Inicio" = "index.md" },
+    {
+      "Guía de desarrollo" = [
+        "guia/index.md",
+        "guia/despliegue.md",
+        "guia/verificacion.md",
+      ],
+    },
+    {
+      "Arquitectura" = [
+        "arquitectura/index.md",
+        "arquitectura/paginas.md",
+      ],
+    },
+    {
+      "Sistema de diseño" = [
+        "diseno/index.md",
+        "diseno/tokens.md",
+        "diseno/formularios.md",
+        "diseno/movimiento.md",
+        "diseno/pagina-404.md",
+      ],
+    },
+    {
+      "Activos" = [
+        "activos/index.md",
+        "activos/mapa.md",
+      ],
+    },
+  ]
+
+  [[project.extra.social]]
+    icon = "fontawesome/brands/github"
+    link = "https://github.com/Los-Come-Tuani"
+
+  [[project.extra.social]]
+    icon = "fontawesome/brands/instagram"
+    link = "https://instagram.com/kplan.nic"
+
+  [project.markdown_extensions]
+    abbr       = {}
+    admonition = {}
+    attr_list  = {}
+    def_list   = {}
+    md_in_html = {}
+    tables     = {}
+
+    toc = {
+      permalink = true,
+      toc_depth = 3,
+    }
+
+    [project.markdown_extensions.pymdownx]
+      blocks.caption = {}
+      caret          = {}
+      details        = {}
+      emoji          = {}
+      highlight      = {}
+      keys           = {}
+      mark           = {}
+      tilde          = {}
+
+      tasklist.custom_checkbox = true
+
+      snippets.auto_append = [
+        "docs/snippets/abbrs.md",
+        "docs/snippets/links.md",
+      ]
+
+      superfences.custom_fences = [
+        {
+          name   = "mermaid",
+          class  = "mermaid",
+          format = "pymdownx.superfences.fence_code_format",
+        },
+      ]
+
+      [project.markdown_extensions.pymdownx.tabbed]
+        alternate_style = true
+
+        slugify = {
+          kwds.case = "lower",
+          object    = "pymdownx.slugs.slugify",
+        }
+
+  [project.theme]
+    features = [
+      "content.code.copy",
+      "content.tooltips",
+      "navigation.footer",
+      "navigation.indexes",
+      "navigation.instant",
+      "navigation.instant.prefetch",
+      "navigation.instant.progress",
+      "navigation.path",
+      "navigation.pruning",
+      "navigation.sections",
+      "navigation.tabs",
+      "navigation.tabs.sticky",
+      "navigation.top",
+    ]
+
+    favicon  = "favicon.svg"
+    language = "es"
+    logo     = "logo.svg"
+    variant  = "modern"
+
+    [[project.theme.palette]]
+      accent      = "custom"
+      media       = "(prefers-color-scheme: light)"
+      primary     = "custom"
+      scheme      = "default"
+      toggle.icon = "lucide/sun"
+      toggle.name = "Ir a modo oscuro"
+
+    [[project.theme.palette]]
+      accent      = "custom"
+      media       = "(prefers-color-scheme: dark)"
+      primary     = "custom"
+      scheme      = "slate"
+      toggle.icon = "lucide/moon"
+      toggle.name = "Ir a modo claro"
+
+  [project.validation]
+    invalid_link_anchors  = true
+    invalid_links         = true
+    shadowed_definitions  = true
+    shadowed_footnotes    = true
+    unresolved_footnotes  = true
+    unresolved_references = false
+    unused_definitions    = false
+    unused_footnotes      = true
