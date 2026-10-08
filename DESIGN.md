@@ -70,6 +70,16 @@ Curva `cubic-bezier(.23, 1, .32, 1)`. Hover solo con puntero fino. Las interacci
 
 ## Recursos y mantenimiento
 
+### Página 404: Snake de recorridos
+
+La ruta comodín muestra el mensaje 404 y «Volver al inicio» antes del juego en el orden de lectura. En escritorio se presentan en dos columnas; bajo 700 px se apilan. El tablero SVG de 18 × 18 usa superficie crema, ruta terracota de segmentos redondeados y marcadores verdes/amarillos del mismo valor. El isotipo original acompaña el título sin modificaciones.
+
+La partida comienza con «Jugar» y avanza una casilla cada 160 ms. Flechas y W/A/S/D actúan solo con el tablero enfocado; un deslizamiento táctil intencional produce un giro y no hay controles de dirección visibles. Se ignoran giros inversos y cambios adicionales antes del siguiente avance. Cada marcador suma una parada y un segmento; bordes o cuerpo terminan la partida. Si se llena el tablero, se muestra «Ruta completa».
+
+Salir del tablero, pulsar Esc, cambiar de ventana o esconder la pestaña pausa la partida. Reanudar es manual. Se bloquea el desplazamiento táctil únicamente sobre el tablero durante el juego. Inicio, pausa, puntuación y final se anuncian sin leer cada avance. El movimiento es parte de la mecánica; no hay transiciones de posición ni efectos decorativos, y las transiciones de los botones se eliminan con movimiento reducido. No hay sonido, almacenamiento de partidas ni solicitudes de red del juego.
+
+Lógica pura en `src/components/snake/snake-engine.ts`, presentación SVG y controles en componentes vecinos; estilos acotados en `src/styles/not-found.css`. Pruebas de reglas: `node --experimental-strip-types --test scripts/snake-engine.test.mjs` (Node 22). Prueba de navegador contra una vista previa: `node scripts/verify-snake.cjs <node_modules-con-playwright> [origen]`; usa Edge, teclado y eventos táctiles nativos emulados, y guarda resultados/capturas en `output/playwright/`.
+
 `public/media/` contiene WebP responsive, dimensiones reservadas y capturas a 375/750 px. La foto principal carga inmediatamente con prioridad alta; destinos inferiores usan lazy loading y las pantallas posteriores de demo se montan bajo demanda. Los SVG originales permanecen intactos.
 
 El inventario completo está en `ASSETS.md`; la validación y sus límites en `output/verification/VERIFICACION.md`. Los scripts de auditoría son herramientas locales y no se incluyen en `dist`.
