@@ -107,10 +107,11 @@ const url = process.argv[3] || 'http://127.0.0.1:4173/';
         .png().toFile(`output/playwright/${name}-${width}.png`);
     }
   }
-  // Every local navigation entry currently points to a real section; no future-route placeholders.
+  // Published pages are real destinations; landing anchors must still resolve.
   const invalid = await page.locator('header a, footer a').evaluateAll(links => links.flatMap(a => {
     const url = new URL(a.href);
     if (url.origin !== location.origin) return [];
+    if (['/empresa/sobre-nosotros', '/empresa/mision', '/contacto'].includes(url.pathname)) return [];
     if (url.pathname !== '/') return [a.getAttribute('href')];
     return url.hash && !document.getElementById(url.hash.slice(1)) ? [url.hash] : [];
   }));
