@@ -3,7 +3,7 @@
 const trim = (value: string | undefined, fallback: string) => (value?.trim() || fallback).replace(/\/+$/, '');
 
 // En `npm run dev`, `/_api` es el proxy de Vite (vite.config.ts) hacia el API.
-export const API_URL = trim(import.meta.env.VITE_API_URL, import.meta.env.DEV ? '/_api' : 'https://develop-api.kplan.dev');
+export const API_URL = trim(import.meta.env.VITE_API_URL, import.meta.env.DEV ? '/_api' : 'https://azure-api.kplan.dev');
 export const PORTAL_URL = trim(import.meta.env.VITE_PORTAL_URL, 'https://portal.kplan.dev');
 
 export type Platform = 'android' | 'macos' | 'windows';

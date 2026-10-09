@@ -34,14 +34,14 @@ dentro del bundle. Sin ellas se usan los valores de producción de
 
 | Variable          | Para qué                                                    | Sin definir                     |
 | ----------------- | ----------------------------------------------------------- | ------------------------------- |
-| `VITE_API_URL`    | API que recibe las solicitudes de demo y devuelve los links | `https://develop-api.kplan.dev` |
+| `VITE_API_URL`    | API que recibe las solicitudes de demo y devuelve los links | `https://azure-api.kplan.dev`   |
 | `VITE_PORTAL_URL` | Portal donde los negocios se registran (`/postular`)        | `https://portal.kplan.dev`      |
 
 ## Lo que hay que configurar en el API
 
 - El dominio de la landing (y el de las vistas previas de Vercel que se quieran
-  probar) tiene que estar en `CORS_ALLOWED_ORIGINS` del servicio del API en
-  Railway. Sin eso el navegador bloquea el envío del formulario de demo ("No
+  probar) tiene que estar en `CORS_ALLOWED_ORIGINS` del API (el App Service de
+  Azure). Sin eso el navegador bloquea el envío del formulario de demo ("No
   pudimos conectarnos") y la lista de versiones sale como "no disponible". Si
   el servicio define `CSRF_TRUSTED_ORIGINS`, agregarlo también ahí. Si no
   define esas variables, los valores por defecto del API ya traen

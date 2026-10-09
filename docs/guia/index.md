@@ -30,7 +30,7 @@ pnpm preview
 
 `dist/` es la salida de producción. No requiere claves. El formulario de demo
 y la sección de descarga hablan con el API de K'plan: sin variables usan
-`https://develop-api.kplan.dev`. En `npm run dev` pasan por el proxy de Vite
+`https://azure-api.kplan.dev`. En `npm run dev` pasan por el proxy de Vite
 (`/_api`, ver `vite.config.ts`): el navegador solo ve `localhost` y el API no
 tiene que aceptar ese origen. Para otro API en local, copiá `.env.example` a
 `.env.local` y cambiá `API_PROXY_TARGET` (por ejemplo `http://localhost:8080`).
