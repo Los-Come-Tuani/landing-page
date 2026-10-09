@@ -1,5 +1,5 @@
-// Lo único que la landing le pide al API (docs/landing.md del repo del API): pedir una demo y saber
-// qué versión de la app se descarga. Rutas públicas: sin cookies ni token.
+// Lo único que la landing le pide al API (docs/landing.md del repo del API): pedir una demo, que de
+// paso entrega los links de la app, y saber qué versiones hay. Rutas públicas: sin cookies ni token.
 const trim = (value: string | undefined, fallback: string) => (value?.trim() || fallback).replace(/\/+$/, '');
 
 export const API_URL = trim(import.meta.env.VITE_API_URL, 'https://develop-api.kplan.dev');
@@ -7,8 +7,11 @@ export const PORTAL_URL = trim(import.meta.env.VITE_PORTAL_URL, 'https://portal.
 
 export type Platform = 'android' | 'macos' | 'windows';
 export type DemoKind = 'business' | 'municipality' | 'institution' | 'tour_operator' | 'other';
-export type LatestRelease = { platform: Platform; version: string; notes: string; file_name: string; size: number; published_at: string };
+export type LatestRelease = { platform: Platform; version: string; notes: string; published_at: string };
 export type DemoRequest = { name: string; email: string; organization: string; kind: DemoKind; city: string; phone: string; message: string; website: string };
+export type DeliveredLink = { platform: Platform; version: string; link: string };
+// `delivered` es falso si no había ninguna versión publicada: el equipo le hace llegar el link después.
+export type DemoRequestResult = { delivered: boolean; links: DeliveredLink[] };
 
 export class ApiError extends Error {
   constructor(message: string, readonly status: number, readonly fields: Record<string, string> = {}) { super(message); }
@@ -34,13 +37,14 @@ async function call(path: string, init: RequestInit = {}): Promise<Response> {
   throw new ApiError(body?.detail || 'Algo salió mal de nuestro lado. Intentá de nuevo en unos minutos.', response.status, fieldsOf(body?.field_errors));
 }
 
-export async function requestDemo(data: DemoRequest): Promise<void> {
-  await call('/demo-request/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+export async function requestDemo(data: DemoRequest): Promise<DemoRequestResult> {
+  const response = await call('/demo-request/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+  const result = await response.json().catch(() => null) as Partial<DemoRequestResult> | null;
+  // Solo se muestran links https: lo demás no se pone en un `href`.
+  const links = (result?.links ?? []).filter(item => typeof item?.link === 'string' && item.link.startsWith('https://'));
+  return { delivered: links.length > 0, links };
 }
 
 export async function latestReleases(signal?: AbortSignal): Promise<LatestRelease[]> {
   return (await call('/app-release/latest/', { signal })).json() as Promise<LatestRelease[]>;
 }
-
-// Un enlace normal: el API redirige a una URL firmada recién hecha, así el enlace no vence.
-export const downloadUrl = (platform: Platform) => `${API_URL}/app-release/latest/${platform}/download/`;

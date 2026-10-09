@@ -198,9 +198,12 @@ main:focus { outline: none; }
 .download-card h3 { font-size: 1.25rem; }
 .download-meta { margin-top: 8px; font-size: .875rem; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
 .download-notes { margin-top: 16px; font-size: .875rem; white-space: pre-line; }
-.download-body { flex: 1; margin-bottom: 24px; }
-.download-card .button { width: 100%; }
+.download-body { flex: 1; }
+.download-cta { margin-top: 32px; }
 .download-hint { margin-top: 12px; font-size: .75rem; color: var(--text-secondary); }
+.demo-links { display: flex; flex-direction: column; gap: 20px; padding: 0; margin: 24px 0 0; list-style: none; }
+.demo-links .button { width: 100%; }
+.demo-sent .demo-links .button { margin-top: 0; }
 .download-status { color: var(--text-secondary); font-size: 1rem; }
 .download-empty { padding: 28px; border: 1px dashed var(--border-default); border-radius: 12px; }
 .download-empty p { font-size: 1rem; color: var(--text-secondary); }

@@ -12,7 +12,7 @@ export function DemoRequestSection() {
     <div className="demo-request-copy">
       <p className="section-label"><CalendarCheck size={18} aria-hidden="true" />Solicitá una demo</p>
       <h2 id="demo-request-title">Te mostramos K’plan por dentro.</h2>
-      <p className="section-intro">Una demostración guiada de la app y del portal: cómo se publican lugares, circuitos, eventos y cupones, y cómo llegan los visitantes.</p>
+      <p className="section-intro">Al enviar el formulario te damos el link para instalar la app del piloto y ver cómo se publican lugares, circuitos, eventos y cupones, y cómo llegan los visitantes.</p>
       <ul className="demo-request-audiences">{audiences.map(a => <li key={a.text}><a.icon size={20} aria-hidden="true" /><span>{a.text}</span></li>)}</ul>
     </div>
     <div className="pilot-form-surface"><DemoRequestForm /></div>

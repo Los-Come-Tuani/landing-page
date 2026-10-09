@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Download, Laptop, Monitor, Smartphone, ArrowUpRight } from 'lucide-react';
-import { downloadUrl, latestReleases, type LatestRelease, type Platform } from '@/lib/api';
+import { ArrowRight, Download } from 'lucide-react';
+import { byPlatform, platforms } from '@/content/platforms';
+import { latestReleases, type LatestRelease } from '@/lib/api';
 
-const platforms: Record<Platform, { label: string; format: string; icon: typeof Smartphone; hint: string }> = {
-  android: { label: 'Android', format: 'APK', icon: Smartphone, hint: 'Al abrir el archivo, Android te pide permitir la instalación desde tu navegador.' },
-  windows: { label: 'Windows', format: 'EXE', icon: Monitor, hint: 'Abrí el instalador y seguí los pasos. Windows puede pedirte que confirmes la instalación.' },
-  macos: { label: 'macOS', format: 'DMG', icon: Laptop, hint: 'Abrí el archivo y arrastrá K’plan a la carpeta Aplicaciones.' },
-};
-const order: Platform[] = ['android', 'windows', 'macos'];
-
-const size = (bytes: number) => `${(bytes / 1048576).toLocaleString('es-NI', { maximumFractionDigits: 1 })} MB`;
 const date = (iso: string) => new Date(iso).toLocaleDateString('es-NI', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Managua' });
 
+// Muestra qué versiones hay, sin links: el link se da al enviar el formulario de demo.
 export function DownloadSection() {
   const [releases, setReleases] = useState<LatestRelease[] | null>(null);
   const [failed, setFailed] = useState(false);
@@ -20,22 +14,23 @@ export function DownloadSection() {
     latestReleases(controller.signal).then(setReleases, () => { if (!controller.signal.aborted) setFailed(true); });
     return () => controller.abort();
   }, []);
-  const shown = (releases ?? []).filter(r => r.platform in platforms).sort((a, b) => order.indexOf(a.platform) - order.indexOf(b.platform));
+  const shown = byPlatform(releases ?? []);
   const loading = releases === null && !failed;
 
   return <section id="descargar" className="section download-section" aria-labelledby="download-title" aria-busy={loading}><div className="container">
     <div className="section-heading"><div><p className="section-label"><Download size={18} aria-hidden="true" />Descargá la app</p><h2 id="download-title">Llevá K’plan en tu bolsillo.</h2></div>
-      <p>La versión del piloto, lista para instalar. Siempre bajás la más reciente que publicó el equipo.</p></div>
-    {loading ? <p className="download-status" role="status">Buscando la versión más reciente…</p>
-      : shown.length === 0 ? <div className="download-empty"><p><strong>La descarga todavía no está disponible.</strong> Mientras tanto, explorá cómo funciona la app en esta página.</p><a href="#producto" className="text-link">Ver la demostración<ArrowUpRight size={18} aria-hidden="true" /></a></div>
-      : <ul className="download-grid">{shown.map(r => { const p = platforms[r.platform]; return <li key={r.platform} className="download-card">
-        <p.icon className="download-icon" aria-hidden="true" />
-        <div className="download-body"><h3>{p.label}</h3>
-          <p className="download-meta">Versión {r.version} · {p.format} · {size(r.size)}<br />Publicada el {date(r.published_at)}</p>
-          {r.notes && <p className="download-notes">{r.notes}</p>}</div>
-        <a className="button button--primary" href={downloadUrl(r.platform)} rel="nofollow">Descargar para {p.label}<Download size={18} aria-hidden="true" /></a>
-        <p className="download-hint">{p.hint}</p>
-      </li>; })}</ul>}
+      <p>La versión del piloto, lista para instalar. Completá el formulario de demo y al enviarlo te damos el link de descarga.</p></div>
+    {loading ? <p className="download-status" role="status">Buscando las versiones disponibles…</p>
+      : shown.length === 0 ? <div className="download-empty"><p><strong>{failed ? 'No pudimos ver qué versiones hay.' : 'Todavía no hay una versión publicada.'}</strong> Dejanos tus datos en el formulario de demo y te avisamos cuando esté lista.</p><a href="#demo" className="text-link">Pedir la app<ArrowRight size={18} aria-hidden="true" /></a></div>
+      : <>
+        <ul className="download-grid">{shown.map(r => { const p = platforms[r.platform]; return <li key={r.platform} className="download-card">
+          <p.icon className="download-icon" aria-hidden="true" />
+          <div className="download-body"><h3>{p.label}</h3>
+            <p className="download-meta">Versión {r.version} · {p.format}<br />Publicada el {date(r.published_at)}</p>
+            {r.notes && <p className="download-notes">{r.notes}</p>}</div>
+        </li>; })}</ul>
+        <a href="#demo" className="button button--primary download-cta">Pedir el link de descarga<ArrowRight size={18} aria-hidden="true" /></a>
+      </>}
     <p className="download-footnote">¿Usás iPhone? La versión para iOS todavía no está disponible.</p>
   </div></section>;
 }

@@ -6,9 +6,20 @@ icon: lucide/clipboard-list
 
 ## Solicitud de demo (`#demo`)
 
-El único formulario de la landing. Lo manda a `POST /demo-request/` del API
-(docs/landing.md del repo del API); el equipo lo atiende en el portal, en
+El único formulario de la landing, y la única forma de recibir el link de la
+app. Lo manda a `POST /demo-request/` del API (docs/landing.md del repo del
+API), que responde `200` con `{delivered, links}`: un link (de Drive) por cada
+plataforma con versión publicada. El equipo ve cada solicitud en el portal, en
 "Sitio web → Solicitudes de demo", y recibe un aviso en la campana.
+
+- **Con versión publicada**: la pantalla de éxito muestra un botón por
+  plataforma ("Descargar para Android") que abre el link en una pestaña nueva,
+  con la versión y cómo instalarla. La solicitud queda "Entregada".
+- **Sin versión publicada**: dice que le vamos a avisar al correo (y al
+  teléfono, si lo dejó) cuando esté lista. No se manda ningún correo
+  automático: la solicitud queda "Pendiente" y el equipo le hace llegar el
+  link y la marca como entregada en el portal.
+- Solo se ponen en un `href` los links que empiezan con `https://`.
 
 Campos: nombre, correo, organización y qué representa (comercio, alcaldía,
 institución cultural, operador turístico u otro); ciudad, teléfono y qué le
@@ -18,7 +29,7 @@ gustaría ver son opcionales. Etiquetas persistentes, errores asociados con
 - **Validación** en el navegador y en el API. Un `400` del API marca los campos
   que trae en `field_errors` (sin el prefijo `body.`).
 - **Envío**: el botón se desactiva mientras viaja (evita duplicados). El éxito
-  solo se muestra con la respuesta `204`; si falla, el borrador se conserva y
+  solo se muestra con la respuesta `200`; si falla, el borrador se conserva y
   el mensaje dice qué hacer (sin conexión, límite de peticiones `429`, error
   del servidor).
 - **Campo trampa** `website`: fuera de la pantalla, sin foco y sin
@@ -40,7 +51,7 @@ Ya no son formularios: cada perfil lleva al flujo real que existe.
 ## Descarga (`#descargar`)
 
 Lee `GET /app-release/latest/` al cargar la página y muestra una tarjeta por
-plataforma con versión publicada (Android, Windows, macOS). Cada botón es un
-enlace a `/app-release/latest/{plataforma}/download/`, que redirige a una URL
-firmada recién hecha: el enlace no vence. Sin versiones (o si el API no
-responde) la sección dice que la descarga todavía no está disponible.
+plataforma con versión publicada (Android, Windows, macOS): versión, fecha y
+novedades, sin link. Un solo botón, "Pedir el link de descarga", lleva al
+formulario de demo. Sin versiones (o si el API no responde) la sección invita
+a dejar los datos en el formulario para avisarle cuando esté lista.

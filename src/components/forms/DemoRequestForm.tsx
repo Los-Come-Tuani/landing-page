@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import { ArrowRight, Check, CircleAlert } from 'lucide-react';
-import { ApiError, requestDemo, type DemoKind } from '@/lib/api';
+import { ArrowRight, ArrowUpRight, Check, CircleAlert } from 'lucide-react';
+import { byPlatform, platforms } from '@/content/platforms';
+import { ApiError, requestDemo, type DemoKind, type DemoRequestResult } from '@/lib/api';
 
 type Field = { name: Exclude<keyof Draft, 'website'>; label: string; placeholder?: string; type?: string; optional?: boolean; full?: boolean; autoComplete?: string; max: number };
 type Draft = { name: string; email: string; organization: string; kind: string; city: string; phone: string; message: string; website: string };
@@ -37,6 +38,7 @@ export function DemoRequestForm() {
   const [draft, setDraft] = useState<Draft>(empty);
   const [errors, setErrors] = useState<Partial<Record<keyof Draft, string>>>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [result, setResult] = useState<DemoRequestResult | null>(null);
   const [failure, setFailure] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
   const doneRef = useRef<HTMLDivElement>(null);
@@ -54,7 +56,7 @@ export function DemoRequestForm() {
     setStatus('sending');
     try {
       const clean = Object.fromEntries(Object.entries(draft).map(([key, value]) => [key, value.trim()])) as Draft;
-      await requestDemo({ ...clean, kind: clean.kind as DemoKind });
+      setResult(await requestDemo({ ...clean, kind: clean.kind as DemoKind }));
       setStatus('sent');
       requestAnimationFrame(() => doneRef.current?.focus());
     } catch (error) {
@@ -65,17 +67,30 @@ export function DemoRequestForm() {
       setFailure(error instanceof ApiError ? error.message : 'Algo salió mal. Intentá de nuevo.');
     }
   };
-  const again = () => { setDraft(empty); setErrors({}); setStatus('idle'); requestAnimationFrame(() => formRef.current?.querySelector<HTMLElement>('[name="name"]')?.focus()); };
+  const again = () => { setDraft(empty); setErrors({}); setResult(null); setStatus('idle'); requestAnimationFrame(() => formRef.current?.querySelector<HTMLElement>('[name="name"]')?.focus()); };
 
-  if (status === 'sent') return <div className="form-review demo-sent" ref={doneRef} tabIndex={-1}>
-    <div className="review-label"><Check size={20} aria-hidden="true" /> Solicitud enviada</div>
-    <h3>¡Gracias! Ya recibimos tu solicitud.</h3>
-    <p>El equipo de K’plan te va a escribir a <strong>{draft.email.trim()}</strong> para coordinar la demostración.</p>
-    <button className="button button--secondary" type="button" onClick={again}>Enviar otra solicitud</button>
-  </div>;
+  if (status === 'sent') {
+    const links = byPlatform(result?.links ?? []);
+    const phone = draft.phone.trim();
+    return <div className="form-review demo-sent" ref={doneRef} tabIndex={-1}>
+      <div className="review-label"><Check size={20} aria-hidden="true" /> Solicitud enviada</div>
+      {links.length > 0 ? <>
+        <h3>¡Gracias! Ya podés descargar K’plan.</h3>
+        <p>Estos son los links de la versión más reciente del piloto. Se abren en Google Drive.</p>
+        <ul className="demo-links">{links.map(l => { const p = platforms[l.platform]; return <li key={l.platform}>
+          <a className="button button--primary" href={l.link} target="_blank" rel="noopener noreferrer"><p.icon size={18} aria-hidden="true" />Descargar para {p.label}<ArrowUpRight size={18} aria-hidden="true" /></a>
+          <p className="download-hint">Versión {l.version} · {p.format}. {p.hint}</p>
+        </li>; })}</ul>
+      </> : <>
+        <h3>¡Gracias! Ya recibimos tu solicitud.</h3>
+        <p>Todavía no hay una versión de la app lista para descargar. Te vamos a avisar a <strong>{draft.email.trim()}</strong>{phone && <> o al <strong>{phone}</strong></>} cuando esté disponible.</p>
+      </>}
+      <button className="button button--secondary" type="button" onClick={again}>Enviar otra solicitud</button>
+    </div>;
+  }
 
   return <form ref={formRef} noValidate onSubmit={submit} className="participation-form" aria-label="Solicitar una demo" aria-busy={status === 'sending'}>
-    <div className="form-heading"><h3>Pedí una demostración.</h3><p>Contanos quién sos y qué te interesa; te escribimos para coordinar.</p></div>
+    <div className="form-heading"><h3>Pedí una demostración.</h3><p>Contanos quién sos y qué te interesa. Al enviarlo te damos el link para descargar la app; si todavía no está lista, te avisamos.</p></div>
     <div className="form-fields">{fields.map(f => {
       const id = 'demo-' + f.name;
       const props = { id, name: f.name, value: draft[f.name], required: !f.optional, 'aria-invalid': !!errors[f.name], 'aria-describedby': errors[f.name] ? id + '-error' : undefined, disabled: status === 'sending', onBlur: () => setErrors(e => ({ ...e, [f.name]: validate(f, draft[f.name]) })) };
@@ -91,6 +106,6 @@ export function DemoRequestForm() {
     <div className="form-trap" aria-hidden="true"><label htmlFor="demo-website">Sitio web</label><input id="demo-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={draft.website} onChange={e => update('website', e.target.value)} /></div>
     {failure && <p className="form-notice form-notice--error" role="alert"><CircleAlert size={18} aria-hidden="true" /><span>{failure}</span></p>}
     <button className="button button--primary" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Enviando…' : 'Solicitar demo'}<ArrowRight size={18} aria-hidden="true" /></button>
-    <p className="form-privacy">Usamos estos datos solo para contactarte sobre la demostración.</p>
+    <p className="form-privacy">Usamos estos datos solo para contactarte sobre la app y la demostración.</p>
   </form>;
 }
