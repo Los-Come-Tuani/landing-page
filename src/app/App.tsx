@@ -6,6 +6,7 @@ import { RouteFocus } from './RouteFocus';
 import { AboutPage } from './pages/AboutPage';
 import { MissionPage } from './pages/MissionPage';
 import { ContactPage } from './pages/ContactPage';
+import { ErrorPage } from './pages/ErrorPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { CreativeCities } from '@/components/sections/CreativeCities';
 import { EcosystemSection } from '@/components/sections/EcosystemSection';
@@ -37,6 +38,7 @@ function LandingPage() {
 
 const router = createBrowserRouter([{
   element: <><SiteLayout><Outlet /></SiteLayout><RouteFocus /><ScrollRestoration /></>,
+  errorElement: <ErrorPage />,
   children: [
     { path: '/', element: <LandingPage /> },
     { path: '/empresa/sobre-nosotros', element: <AboutPage /> },

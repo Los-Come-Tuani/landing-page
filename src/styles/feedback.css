@@ -1,0 +1,14 @@
+img[data-failed] { background: var(--surface-placeholder); }
+
+.error-screen { min-height: 60vh; }
+.error-screen-copy { max-width: 560px; }
+.error-screen-label { color: var(--action-primary); font-size: .875rem; font-weight: 500; margin-bottom: 24px; }
+.error-screen h1 { font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 24px; }
+.error-screen-copy > p:not(.error-screen-label) { max-width: 46ch; color: var(--text-secondary); }
+.error-screen-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.error-screen-copy > .error-screen-help { margin-top: 24px; font-size: .875rem; }
+.error-screen-help a { color: var(--action-primary); text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 699px) {
+  .error-screen h1 { font-size: clamp(1.75rem, 6vw, 2rem); }
+  .error-screen-actions .button { width: 100%; }
+}
