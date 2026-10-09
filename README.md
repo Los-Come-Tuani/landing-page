@@ -49,7 +49,9 @@ pnpm preview
 y la sección de descarga hablan con el API de K'plan (`VITE_API_URL`, por
 defecto `https://develop-api.kplan.dev`); el registro de negocios lleva al
 portal (`VITE_PORTAL_URL`). Ver `.env.example`. El API tiene que tener el
-dominio de la landing en `CORS_ALLOWED_ORIGINS`. En este equipo, si pnpm detecta un
+dominio de la landing publicada en `CORS_ALLOWED_ORIGINS`. En `npm run dev` la
+landing le habla al API por el proxy de Vite (`/_api`, ver `vite.config.ts`), así
+que funciona en cualquier puerto sin CORS. En este equipo, si pnpm detecta un
 store distinto del existente, usar
 `--store-dir C:/Users/USUARIO/AppData/Local/pnpm/store` al instalar.
 

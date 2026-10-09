@@ -41,9 +41,11 @@ dentro del bundle. Sin ellas se usan los valores de producción de
 
 - El dominio de la landing (y el de las vistas previas de Vercel que se quieran
   probar) tiene que estar en `CORS_ALLOWED_ORIGINS` del servicio del API en
-  Railway. Sin eso el navegador bloquea el envío del formulario de demo y la
-  lista de versiones sale como "no disponible". Si el servicio define
-  `CSRF_TRUSTED_ORIGINS`, agregarlo también ahí.
+  Railway. Sin eso el navegador bloquea el envío del formulario de demo ("No
+  pudimos conectarnos") y la lista de versiones sale como "no disponible". Si
+  el servicio define `CSRF_TRUSTED_ORIGINS`, agregarlo también ahí. Si no
+  define esas variables, los valores por defecto del API ya traen
+  `https://kplan.dev` y `https://www.kplan.dev`.
 - Las versiones se registran con el link de Drive de su instalador y se
   publican desde el portal, en "Sitio web → Versiones de la app"
   (docs/landing.md del repo del API). El archivo en Drive tiene que estar
