@@ -4,8 +4,17 @@ icon: lucide/gamepad-2
 
 # Página 404: Snake de recorridos
 
-La ruta comodín muestra el mensaje 404 y «Volver al inicio» antes del juego
-en el orden de lectura. En escritorio se presentan en dos columnas; bajo
+La ruta comodín muestra «Página no encontrada», el mensaje y sus acciones
+antes del juego en el orden de lectura. Ningún texto visible lleva el código
+de estado: la página habla del camino, no del error (ver
+[Estados de error y avisos](estados.md)). «Volver al inicio» es la acción
+principal; «Volver atrás» aparece solo si hay a dónde volver (la entrada del
+router no es la inicial o el historial de la pestaña tiene más de una
+entrada), así que una pestaña abierta directo en esa dirección no la muestra.
+Si el router entrega un 404 a la pantalla de error de la ruta raíz, se ve
+este mismo contenido dentro del marco mínimo de esa pantalla.
+
+En escritorio se presentan en dos columnas; bajo
 700 px se apilan. El tablero SVG de 18 × 18 usa superficie crema, ruta
 terracota de segmentos redondeados y marcadores verdes/amarillos del mismo
 valor. El isotipo original acompaña el título sin modificaciones.

@@ -59,4 +59,10 @@ capturas/resultados en `output/playwright/` (ignorado por Git). No comprueba
 entrega de correo ni un despliegue remoto. Ver también
 [la arquitectura de páginas del footer](../arquitectura/paginas.md).
 
+## Estados de error y avisos
+
+La pantalla de error, los snackbars, el diálogo de éxito, el aviso sin
+JavaScript y el respaldo de imágenes se prueban a mano con las DevTools; los
+pasos están en [Estados de error y avisos](../diseno/estados.md#como-probarlo).
+
 Los scripts de auditoría son herramientas locales y no se incluyen en `dist`.

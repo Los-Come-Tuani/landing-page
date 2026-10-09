@@ -23,6 +23,15 @@ paleta anterior paralela.
 | info-blue | #0077B6 | Disponible para información pertinente |
 | reward-yellow | #E9B824 | Disponible para recompensas previstas |
 | border-default | #D9DEDF | Separadores no funcionales |
+| surface-placeholder | #DCE3E2 | Fondo de fotos mientras cargan o si no cargan |
+| feedback-success | = route-green | Ícono de los avisos de éxito |
+| feedback-error | = action-primary | Ícono de los avisos de error; los errores de campo usan el mismo valor |
+| feedback-info | = info-blue | Ícono de los avisos informativos |
+
+Los `feedback-*` son alias semánticos de la paleta: los avisos no suman
+colores nuevos. Capas: header 20, menú móvil 30 y snackbars 40
+(`--z-toast`); los diálogos modales van en la capa superior del navegador.
+Ver [Estados de error y avisos](estados.md).
 
 No se fuerza el uso de todos los colores. Los campos tienen borde #858E8B;
 el foco usa una línea de 2 px y separación de 5 px. Los controles
