@@ -60,10 +60,19 @@ export function DemoRequestForm() {
   // El aviso de este formulario: se retira al reintentar y al salir de la página.
   const notice = useRef(0);
   useEffect(() => () => dismiss(notice.current), [dismiss]);
+  // El foco se mueve después del render: mientras se envía los controles están desactivados y,
+  // con el diálogo abierto, lo demás es inerte.
+  const focusNext = useRef<(() => HTMLElement | null | undefined) | null>(null);
+  useEffect(() => {
+    if (status === 'sending' || !focusNext.current) return;
+    focusNext.current()?.focus();
+    focusNext.current = null;
+  });
+  const fieldNamed = (name: string) => () => formRef.current?.querySelector<HTMLElement>('[name="' + name + '"]');
   const update = (name: keyof Draft, value: string) => { setDraft(d => ({ ...d, [name]: value })); if (errors[name]) setErrors(e => ({ ...e, [name]: '' })); };
   const focusFirst = (next: Partial<Record<keyof Draft, string>>) => {
     const first = fields.find(f => next[f.name]);
-    if (first) requestAnimationFrame(() => formRef.current?.querySelector<HTMLElement>('[name="' + first.name + '"]')?.focus());
+    if (first) focusNext.current = fieldNamed(first.name);
   };
   const warn = (message: string, retry: boolean) => {
     notice.current = show({ tone: 'error', message, action: retry ? { label: 'Reintentar', onClick: () => submitRef.current?.click() } : undefined });
@@ -89,11 +98,12 @@ export function DemoRequestForm() {
       if (Object.keys(known).length) { warn('Revisá los campos marcados.', false); return focusFirst(known); }
       // Esperar un minuto es la salida de un 429: reintentar enseguida volvería a fallar.
       warn(error instanceof ApiError ? error.message : 'Algo salió mal. Intentá de nuevo.', !(error instanceof ApiError && error.status === 429));
-      requestAnimationFrame(() => submitRef.current?.focus());
+      focusNext.current = () => submitRef.current;
     }
   };
-  const again = () => { setDraft(empty); setErrors({}); setResult(null); setStatus('idle'); setDialog(false); requestAnimationFrame(() => formRef.current?.querySelector<HTMLElement>('[name="name"]')?.focus()); };
-  const closeDialog = () => { setDialog(false); requestAnimationFrame(() => doneRef.current?.focus()); };
+  const again = () => { setDraft(empty); setErrors({}); setResult(null); setStatus('idle'); setDialog(false); focusNext.current = fieldNamed('name'); };
+  // El evento `close` del diálogo llega después de cerrarlo con Listo: esa segunda llamada no hace nada.
+  const closeDialog = () => { if (!dialog) return; setDialog(false); focusNext.current = () => doneRef.current; };
 
   if (status === 'sent') {
     const links = byPlatform(result?.links ?? []);
