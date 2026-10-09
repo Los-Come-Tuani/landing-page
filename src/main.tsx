@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from '@/app/App';
+import { ErrorBoundary } from '@/app/ErrorBoundary';
 import '@fontsource/poppins/latin-400.css';
 import '@fontsource/poppins/latin-500.css';
 import '@fontsource/poppins/latin-600.css';
@@ -10,4 +11,5 @@ import '@/styles/index.css';
 import '@/styles/landing.css';
 import '@/styles/territory.css';
 import '@/styles/content-pages.css';
-createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>);
+import '@/styles/feedback.css';
+createRoot(document.getElementById('root')!).render(<StrictMode><ErrorBoundary><App /></ErrorBoundary></StrictMode>);

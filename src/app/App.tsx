@@ -6,6 +6,7 @@ import { RouteFocus } from './RouteFocus';
 import { AboutPage } from './pages/AboutPage';
 import { MissionPage } from './pages/MissionPage';
 import { ContactPage } from './pages/ContactPage';
+import { ErrorPage } from './pages/ErrorPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { CreativeCities } from '@/components/sections/CreativeCities';
 import { EcosystemSection } from '@/components/sections/EcosystemSection';
@@ -14,6 +15,7 @@ import { CreativeTerritory } from '@/components/sections/CreativeTerritory';
 import { DemoRequestSection } from '@/components/sections/DemoRequestSection';
 import { DownloadSection } from '@/components/sections/DownloadSection';
 import { SiteLayout } from '@/components/layout/SiteLayout';
+import { ToastProvider } from '@/components/ui/Toaster';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { ProductDemo } from '@/components/sections/ProductDemo';
 import { PilotFaq } from '@/components/sections/PilotFaq';
@@ -36,7 +38,8 @@ function LandingPage() {
 }
 
 const router = createBrowserRouter([{
-  element: <><SiteLayout><Outlet /></SiteLayout><RouteFocus /><ScrollRestoration /></>,
+  element: <ToastProvider><SiteLayout><Outlet /></SiteLayout><RouteFocus /><ScrollRestoration /></ToastProvider>,
+  errorElement: <ErrorPage />,
   children: [
     { path: '/', element: <LandingPage /> },
     { path: '/empresa/sobre-nosotros', element: <AboutPage /> },

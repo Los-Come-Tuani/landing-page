@@ -3,9 +3,10 @@
   --text-primary: #1a1a1a; --text-secondary: #666;
   --brand-terracotta: #d95d39; --action-primary: #b74728; --action-hover: #983a20;
   --route-green: #2d6a4f; --info-blue: #0077b6; --reward-yellow: #e9b824;
-  --border-default: #d9dedf; --surface-soft: #edf2ef;
+  --border-default: #d9dedf; --surface-soft: #edf2ef; --surface-placeholder: #dce3e2;
+  --feedback-success: var(--route-green); --feedback-error: var(--action-primary); --feedback-info: var(--info-blue);
   --ease-out: cubic-bezier(.23, 1, .32, 1); --ease-in-out: cubic-bezier(.77, 0, .175, 1); --ease-drawer: cubic-bezier(.32, .72, 0, 1);
-  --z-header: 20; --z-menu: 30; --space-section: clamp(4rem, 6.8vw, 6.5rem);
+  --z-header: 20; --z-menu: 30; --z-toast: 40; --space-section: clamp(4rem, 6.8vw, 6.5rem);
   color: var(--text-primary); background: var(--surface-page); font-family: Poppins, Arial, sans-serif;
   font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;
 }
@@ -108,7 +109,7 @@ main:focus { outline: none; }
 .experience-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px 48px; }
 .experience--featured { grid-row: span 2; }
 .experience:not(.experience--featured) { display: grid; grid-template-columns: 42% 1fr; gap: 24px; align-items: center; }
-.experience-image { position: relative; width: 100%; height: 100%; min-height: 205px; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #dce3e2; }
+.experience-image { position: relative; width: 100%; height: 100%; min-height: 205px; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: var(--surface-placeholder); }
 .experience--featured .experience-image { height: 360px; display: block; }
 .experience-image > img { height: 100%; width: 100%; object-fit: cover; }
 .experience-city { position: absolute; left: 16px; top: 16px; display: flex; gap: 6px; align-items: center; border-radius: 6px; padding: 7px 10px; color: var(--text-primary); background: white; font-size: .75rem; font-weight: 500; }
@@ -170,8 +171,6 @@ main:focus { outline: none; }
 .form-field input::placeholder, .form-field textarea::placeholder { color: var(--text-secondary); opacity: 1; }
 .form-field [aria-invalid="true"] { border-color: var(--action-primary); }
 .field-error { color: var(--action-primary); font-size: .75rem; display: flex; align-items: center; gap: 6px; margin-top: 6px; }
-.form-notice { display: flex; align-items: start; gap: 10px; padding: 12px 0; margin-top: 16px; color: var(--text-secondary); font-size: .75rem; line-height: 1.65; }
-.form-notice > svg { margin-top: 2px; }
 .participation-form > .button { margin-top: 8px; width: 100%; }
 .form-privacy { margin-top: 12px; font-size: .75rem; line-height: 1.6; color: var(--text-secondary); }
 .form-review > p { color: var(--text-secondary); font-size: 1rem; margin-top: 8px; }
@@ -186,7 +185,6 @@ main:focus { outline: none; }
 .traveler-panel .button { margin-top: 32px; }
 .panel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: 32px; }
 .panel-actions .button { margin-top: 0; }
-.form-notice--error { color: var(--action-primary); }
 .participation-form > .button:disabled { opacity: .7; cursor: progress; }
 .form-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .demo-sent h3 { font-size: 1.25rem; }
@@ -208,20 +206,25 @@ main:focus { outline: none; }
 .download-empty { padding: 28px; border: 1px dashed var(--border-default); border-radius: 12px; }
 .download-empty p { font-size: 1rem; color: var(--text-secondary); }
 .download-empty strong { color: var(--text-primary); font-weight: 600; }
-.download-empty .text-link { margin-top: 8px; }
+.download-empty-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; margin-top: 16px; }
+.button[aria-disabled="true"] { opacity: .7; cursor: progress; }
+.download-footnote-link { color: var(--action-primary); text-decoration: underline; text-underline-offset: 4px; }
 .download-footnote { margin-top: 24px; font-size: .75rem; color: var(--text-secondary); }
 .demo-request-section { background: var(--surface-cultural); }
 .demo-request-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
 .demo-request-audiences { display: flex; flex-direction: column; gap: 16px; padding: 0; margin: 40px 0 0; list-style: none; }
 .demo-request-audiences li { display: flex; align-items: start; gap: 14px; font-size: .9375rem; color: #625f54; }
 .demo-request-audiences svg { color: var(--route-green); margin-top: 2px; }
-.detail-dialog { width: min(680px, calc(100% - 40px)); max-height: calc(100dvh - 48px); padding: 28px; border: 0; border-radius: 12px; background: white; color: var(--text-primary); }
-body:has(.detail-dialog[open]) { overflow: hidden; }
-.detail-dialog::backdrop { background: rgb(15 25 20 / .5); }
+.dialog { width: min(680px, calc(100% - 40px)); max-height: calc(100dvh - 48px); padding: 28px; border: 0; border-radius: 12px; background: white; color: var(--text-primary); }
+body:has(.dialog[open]) { overflow: hidden; }
+.dialog::backdrop { background: rgb(15 25 20 / .5); }
 .dialog-heading { display: flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
 .dialog-heading h2 { font-size: 1.375rem; padding-top: 8px; }
 .dialog-photo { height: 240px; width: 100%; object-fit: cover; border-radius: 8px; margin-bottom: 24px; }
-.detail-dialog h3 { font-size: 1.25rem; }
+.dialog h3 { font-size: 1.25rem; }
+.dialog-lead { color: var(--text-secondary); font-size: 1rem; }
+.dialog-actions { display: flex; justify-content: flex-end; margin-top: 28px; }
+.dialog-actions .button { min-width: 140px; }
 .experience-details { padding-left: 20px; margin: 20px 0; font-size: 1rem; line-height: 1.7; color: var(--text-secondary); list-style: disc; }
 .experience-details li + li { margin-top: 12px; }
 .site-footer { background: #f9fbfc; padding: 56px 0 32px; }
@@ -367,7 +370,8 @@ body:has(.detail-dialog[open]) { overflow: hidden; }
   .footer-origin { grid-column: 1 / -1; margin-top: 12px; }
   .footer-bottom { grid-template-columns: 1fr; gap: 8px; margin-top: 24px; }
   .site-footer { padding-top: 40px; }
-  .detail-dialog { padding: 20px; width: calc(100% - 32px); }
+  .dialog { padding: 20px; width: calc(100% - 32px); }
+  .dialog-actions .button { width: 100%; }
   .dialog-photo { height: 200px; }
 }
 @media (max-width: 359px) {

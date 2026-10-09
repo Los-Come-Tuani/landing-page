@@ -47,6 +47,6 @@ los caminos de participación para negocios y traductores/guías.
 - La [arquitectura](arquitectura/index.md) describe la estructura del código,
   los contratos de los formularios y el sistema de páginas del footer.
 - El [sistema de diseño](diseno/index.md) documenta composición, tokens,
-  movimiento y la página 404.
+  formularios, estados de error y avisos, movimiento y la página 404.
 - Los [activos](activos/index.md) listan el inventario de recursos, sus
   licencias y el mapa interactivo de ciudades creativas.

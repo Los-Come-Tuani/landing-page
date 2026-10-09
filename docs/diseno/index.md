@@ -45,6 +45,11 @@ once páginas permanece en `planned`, sin enlaces publicados; la
 arquitectura y los criterios de activación están en
 [Páginas del footer](../arquitectura/paginas.md).
 
+Errores, avisos y estados vacíos siguen una regla: nada de códigos de estado
+ni textos técnicos, y siempre una acción para seguir. Pantalla de error,
+snackbars, diálogos, aviso sin JavaScript y respaldo de imágenes en
+[Estados de error y avisos](estados.md).
+
 Se retiraron los marquees y los componentes obsoletos de proceso, bento e
 impacto. No se publican métricas inventadas ni instituciones como alianzas
 confirmadas.

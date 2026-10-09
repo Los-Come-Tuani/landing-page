@@ -3,7 +3,7 @@ import { ArrowUpRight, MapPin, ArrowRight } from 'lucide-react';
 import { experiences } from '@/content/landing-content';
 import { Photo } from '@/components/ui/Photo';
 import { SectionShell } from '@/components/ui/SectionShell';
-import { DetailDialog } from '@/components/ui/DetailDialog';
+import { Dialog } from '@/components/ui/Dialog';
 import type { Experience } from '@/types/landing';
 
 export function CreativeCities() {
@@ -20,9 +20,9 @@ export function CreativeCities() {
       </div>
     </article>)}</div>
     <p className="experience-note">Inspiración para tu próximo recorrido. Las ciudades del piloto se confirmarán antes del lanzamiento.</p>
-    <DetailDialog title={selected ? selected.city + ' · ' + selected.category : 'Conocé la experiencia'} open={!!selected} onClose={() => setSelected(null)}>
+    <Dialog title={selected ? selected.city + ' · ' + selected.category : 'Conocé la experiencia'} open={!!selected} onClose={() => setSelected(null)} closeLabel="Cerrar detalle">
       {selected && <><Photo name={selected.image} alt={selected.alt} className="dialog-photo" sizes="(max-width: 700px) 90vw, 600px" /><h3>{selected.title}</h3><ul className="experience-details">{selected.details.map(detail => <li key={detail}>{detail}</li>)}</ul>
         <a className="button button--primary" href="#piloto" onClick={() => setSelected(null)}>Conocer el piloto<ArrowUpRight size={18} aria-hidden="true" /></a></>}
-    </DetailDialog>
+    </Dialog>
   </SectionShell>;
 }

@@ -95,7 +95,7 @@ uvx zensical serve
 - [Arquitectura](docs/arquitectura/index.md): estructura del código,
   contrato de los formularios y sistema de páginas del footer.
 - [Sistema de diseño](docs/diseno/index.md): composición, tokens,
-  formularios, movimiento y la página 404.
+  formularios, estados de error y avisos, movimiento y la página 404.
 - [Activos](docs/activos/index.md): inventario de recursos, licencias y el
   mapa interactivo de ciudades creativas.
 

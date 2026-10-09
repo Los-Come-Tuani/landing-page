@@ -61,7 +61,9 @@ aviso vigente se mantienen durante la transición.
    provisionales ni confirmaciones simuladas.
 2. Añadir la ruta terminada al router de `src/app/App.tsx`. La ruta `/`
    conserva la landing y `*` muestra la página no encontrada. Evitar
-   duplicar `SiteLayout` al montar las páginas.
+   duplicar `SiteLayout` al montar las páginas. Como hija de la ruta raíz,
+   la página queda cubierta por su pantalla de error y puede usar
+   `useToast()` (ver [Estados de error y avisos](../diseno/estados.md)).
 3. Añadir título y descripción propios, mover el foco al contenido en
    navegación y restaurar scroll con historial. Conservar los hashes de la
    landing. El alojamiento Vercel ya tiene fallback hacia `index.html`;

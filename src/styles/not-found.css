@@ -3,7 +3,7 @@
 .not-found-label { color: var(--action-primary); font-size: .875rem; font-weight: 500; margin-bottom: 24px; }
 .not-found-copy h1 { font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 24px; }
 .not-found-copy > p:not(.not-found-label) { max-width: 40ch; color: var(--text-secondary); }
-.not-found-copy > .button { margin-top: 32px; }
+.not-found-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .not-found-copy .not-found-aside { font-size: .875rem; margin-top: 24px; }
 .snake-game { width: 100%; max-width: 480px; justify-self: end; min-width: 0; }
 .snake-topline { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
