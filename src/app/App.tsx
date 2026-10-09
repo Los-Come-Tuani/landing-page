@@ -11,6 +11,8 @@ import { CreativeCities } from '@/components/sections/CreativeCities';
 import { EcosystemSection } from '@/components/sections/EcosystemSection';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { CreativeTerritory } from '@/components/sections/CreativeTerritory';
+import { DemoRequestSection } from '@/components/sections/DemoRequestSection';
+import { DownloadSection } from '@/components/sections/DownloadSection';
 import { SiteLayout } from '@/components/layout/SiteLayout';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { ProductDemo } from '@/components/sections/ProductDemo';
@@ -23,9 +25,11 @@ function LandingPage() {
       <PageMetadata title="K’plan · La Nicaragua creativa, en tu próximo plan" description="Descubrí la propuesta de K’plan: circuitos, lugares, eventos y talento local para explorar Nicaragua. Conocé la app y el piloto en preparación." />
       <HeroSection />
       <ProductDemo />
+      <DownloadSection />
       <CreativeCities />
       <CreativeTerritory />
       <EcosystemSection onChoose={setProfile} />
+      <DemoRequestSection />
       <PilotFaq />
       <FinalCta profile={profile} onChoose={setProfile} />
   </>;

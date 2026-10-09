@@ -39,7 +39,8 @@ icon: lucide/home
 Landing implementada con React 19, TypeScript, Vite y Tailwind. Presenta el
 producto mediante fotografía de Nicaragua, pantallas reales de la app y una
 demostración manual. Incluye menú móvil, detalles de experiencias, preguntas
-frecuentes y formularios diferenciados para negocios y traductores/guías.
+frecuentes, la descarga de la app, el formulario para solicitar una demo y
+los caminos de participación para negocios y traductores/guías.
 
 - La [guía de desarrollo](guia/index.md) cubre instalación, scripts, despliegue
   en Vercel y verificación reproducible.

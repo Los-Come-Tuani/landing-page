@@ -1,5 +1,5 @@
-import { MapPin, Store, Languages, ArrowUpRight } from 'lucide-react';
-import { ParticipationForm } from '@/components/forms/ParticipationForm';
+import { MapPin, Store, Languages, ArrowUpRight, CalendarCheck, Download } from 'lucide-react';
+import { PORTAL_URL } from '@/lib/api';
 import type { ParticipantProfile } from '@/types/landing';
 
 const profiles: { id: ParticipantProfile; label: string; icon: typeof Store }[] = [
@@ -16,9 +16,10 @@ export function FinalCta({ profile, onChoose }: { profile: ParticipantProfile; o
       <img className="cultural-art" src="/media/cultural-art.webp" width={900} height={576} loading="lazy" alt="Ilustración de K’plan que conecta cerámica, arquitectura y territorio." />
       <p className="cultural-line">Hay mucho por descubrir.<br />Y mucho por compartir.</p>
     </aside><div className="pilot-form-surface">
-      <div id="profile-viajero" hidden={profile !== 'viajero'}><div className="traveler-panel"><MapPin size={32} aria-hidden="true" /><h3>Tu curiosidad ya tiene un punto de partida.</h3><p>Mientras preparamos el piloto, explorá una vista previa de la app y las historias que inspiran K’plan.</p><p>Las fechas de apertura y el canal para sumarte se anunciarán más adelante.</p><a href="#producto" className="button button--primary">Explorar la demo<ArrowUpRight size={18} aria-hidden="true" /></a></div></div>
-      <div id="profile-negocio" hidden={profile !== 'negocio'}><ParticipationForm mode="negocio" /></div>
-      <div id="profile-traductor" hidden={profile !== 'traductor'}><ParticipationForm mode="traductor" /></div>
+      <div id="profile-viajero" hidden={profile !== 'viajero'}><div className="traveler-panel"><MapPin size={32} aria-hidden="true" /><h3>Tu curiosidad ya tiene un punto de partida.</h3><p>Descargá la app para armar tu recorrido con circuitos, lugares y eventos de las ciudades creativas.</p><p>Si todavía no hay una versión para tu teléfono, explorá la vista previa de la app en esta página.</p><a href="#descargar" className="button button--primary">Descargar la app<Download size={18} aria-hidden="true" /></a></div></div>
+      <div id="profile-negocio" hidden={profile !== 'negocio'}><div className="traveler-panel"><Store size={32} aria-hidden="true" /><h3>Tu negocio puede ser parte del plan.</h3><p>Registrá tu negocio en el portal de K’plan: completás los datos de tu emprendimiento, subís sus documentos y el equipo revisa la solicitud. Desde el portal administrás tu lugar, tus cupones y tu insignia.</p><p>¿Preferís conocerlo antes? Pedí una demostración y te lo mostramos.</p>
+        <div className="panel-actions"><a href={PORTAL_URL + '/postular'} className="button button--primary">Registrar mi negocio<ArrowUpRight size={18} aria-hidden="true" /></a><a href="#demo" className="text-link">Solicitar una demo<CalendarCheck size={18} aria-hidden="true" /></a></div></div></div>
+      <div id="profile-traductor" hidden={profile !== 'traductor'}><div className="traveler-panel"><Languages size={32} aria-hidden="true" /><h3>Tu talento conecta a las personas.</h3><p>Guías, traductores e intérpretes se postulan desde la app: descargala, elegí <strong>Postularme</strong> y seguí los pasos. Tené a mano tu cédula, tu récord de policía y tu licencia del INTUR o tu certificado de idiomas.</p><p>El equipo de K’plan revisa tus documentos antes de habilitar tu acceso.</p><a href="#descargar" className="button button--primary">Descargar la app<Download size={18} aria-hidden="true" /></a></div></div>
     </div></div>
   </div></section>;
 }

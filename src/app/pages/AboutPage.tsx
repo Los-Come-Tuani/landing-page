@@ -26,7 +26,7 @@ export function AboutPage() {
     <section className="content-closing" aria-labelledby="about-pilot">
       <p className="content-eyebrow">Piloto en preparación</p>
       <h2 id="about-pilot">Estamos dando los primeros pasos</h2>
-      <p>Hoy podés explorar una demostración de la app. La descarga pública y las reservas todavía no están disponibles; las ciudades, los circuitos y las colaboraciones del piloto se confirmarán antes del lanzamiento.</p>
+      <p>Hoy podés explorar una demostración de la app y, cuando el equipo publica una versión del piloto, descargarla desde esta página. Las ciudades, los circuitos y las colaboraciones del piloto se confirmarán antes del lanzamiento.</p>
       <Link className="button button--primary" to="/#producto">Explorar la demo<ArrowUpRight size={18} aria-hidden="true" /></Link>
       <Link className="text-link" to="/empresa/mision">Conocé nuestra misión<ArrowUpRight size={18} aria-hidden="true" /></Link>
     </section>

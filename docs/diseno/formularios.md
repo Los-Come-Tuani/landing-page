@@ -2,26 +2,45 @@
 icon: lucide/clipboard-list
 ---
 
-# Formularios: contrato actual y conexión futura
+# Formularios y participación
 
-El usuario pidió implementar ambos y dejar el envío para más adelante. Los
-CTA aterrizan en `#piloto`; los enlaces de negocio y talento preseleccionan
-su perfil. El perfil viajero ofrece la demo y explica el estado del piloto.
+## Solicitud de demo (`#demo`)
 
-Negocios: nombre, correo, negocio, ciudad/municipio, categoría; mensaje
-opcional. Traductores y guías: nombre, correo, zona de trabajo, servicio e
-idiomas; experiencia opcional. Etiquetas persistentes, errores asociados
-con `aria-describedby`, foco en el primer error y revisión con valores
-escapados por React. Se puede volver a editar. Cambiar de perfil conserva
-el borrador de cada formulario mientras la página esté abierta.
+El único formulario de la landing. Lo manda a `POST /demo-request/` del API
+(docs/landing.md del repo del API); el equipo lo atiende en el portal, en
+"Sitio web → Solicitudes de demo", y recibe un aviso en la campana.
 
-La acción se llama **Revisar mis datos**. No hay POST, correo inventado,
-guardado en localStorage ni confirmación de inscripción. La revisión dice
-que los datos no se han enviado ni registrado. Recargar los descarta.
+Campos: nombre, correo, organización y qué representa (comercio, alcaldía,
+institución cultural, operador turístico u otro); ciudad, teléfono y qué le
+gustaría ver son opcionales. Etiquetas persistentes, errores asociados con
+`aria-describedby` y foco en el primer error, igual que antes.
 
-Al conectar un backend: definir destino y política de datos; validar
-también en servidor; habilitar envío pendiente, prevención de duplicados,
-éxito solo tras respuesta confirmada y error recuperable que conserve el
-borrador. El aviso de privacidad debe corresponder entonces al servicio
-real. Es trabajo futuro autorizado a posponer, no un defecto pendiente de
-esta versión.
+- **Validación** en el navegador y en el API. Un `400` del API marca los campos
+  que trae en `field_errors` (sin el prefijo `body.`).
+- **Envío**: el botón se desactiva mientras viaja (evita duplicados). El éxito
+  solo se muestra con la respuesta `204`; si falla, el borrador se conserva y
+  el mensaje dice qué hacer (sin conexión, límite de peticiones `429`, error
+  del servidor).
+- **Campo trampa** `website`: fuera de la pantalla, sin foco y sin
+  autocompletar. Una persona lo deja vacío; si llega lleno, el API responde
+  igual y no guarda nada.
+- **Sin cookies** (`credentials: 'omit'`) ni datos en `localStorage`.
+
+## Negocios, guías y viajeros (`#piloto`)
+
+Ya no son formularios: cada perfil lleva al flujo real que existe.
+
+- **Negocio**: "Registrar mi negocio" abre `/postular` del portal
+  (`VITE_PORTAL_URL`), donde se crea la cuenta y se manda la solicitud con sus
+  documentos. Ofrece también pedir una demo.
+- **Guía o traductor**: se postula desde la app ("Postularme"); el panel lleva
+  a la sección de descarga y dice qué documentos tener a mano.
+- **Viajero**: lleva a la descarga.
+
+## Descarga (`#descargar`)
+
+Lee `GET /app-release/latest/` al cargar la página y muestra una tarjeta por
+plataforma con versión publicada (Android, Windows, macOS). Cada botón es un
+enlace a `/app-release/latest/{plataforma}/download/`, que redirige a una URL
+firmada recién hecha: el enlace no vence. Sin versiones (o si el API no
+responde) la sección dice que la descarga todavía no está disponible.

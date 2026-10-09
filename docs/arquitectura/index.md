@@ -7,18 +7,19 @@ icon: lucide/folder-tree
 - `src/app/App.tsx`: composición y perfil de participación.
 - `src/content/landing-content.ts`: navegación, demo, experiencias, FAQ y
   créditos.
-- `src/components/sections/`: secciones de la landing.
-- `src/components/forms/ParticipationForm.tsx`: validación y revisión local.
+- `src/components/sections/`: secciones de la landing, incluidas la descarga
+  (`DownloadSection`) y la solicitud de demo (`DemoRequestSection`).
+- `src/components/forms/DemoRequestForm.tsx`: el formulario de demo.
+- `src/lib/api.ts`: lo que la landing le pide al API y las direcciones del API
+  y del portal (`VITE_API_URL`, `VITE_PORTAL_URL`).
 - `src/components/ui/`: enlaces, pantallas, imágenes y diálogo nativo.
 - `src/styles/landing.css`: tokens y diseño adaptable; Tailwind usa las
   mismas variables.
 - `public/media/`: exportaciones WebP optimizadas.
 
-## Formularios: sin envío
+## Formularios y API
 
-Los formularios **no envían ni guardan datos**. La acción permite revisar y
-volver a editar; cambiar de perfil conserva cada borrador en memoria.
-Recargar los descarta. Esto responde a la decisión del usuario de posponer
-el destino del correo y el backend. No confundir esta revisión con una
-inscripción al piloto. El contrato completo de campos y validación está en
-[Formularios](../diseno/formularios.md).
+La solicitud de demo se envía al API de K'plan, que también dice qué versión
+de la app se descarga. Los perfiles de negocio y de guía ya no son
+formularios: llevan al registro del portal y a la app. El contrato completo
+está en [Formularios](../diseno/formularios.md).

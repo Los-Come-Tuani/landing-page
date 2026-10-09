@@ -23,14 +23,14 @@ export function HeaderNav() {
     <nav className="container nav" aria-label="Principal">
       <Link to={homeAnchor('#inicio')} className="brand" aria-label="K’plan, inicio"><img src={logo} width={100} height={46} alt="K’plan" /></Link>
       <div className="nav-links">{navItems.map(item => <Link to={homeAnchor(item.href)} key={item.href}>{item.label}</Link>)}</div>
-      <div className="nav-actions"><Link to={homeAnchor('#piloto')} className="button button--primary nav-cta">Unirme al piloto<ArrowUpRight size={18} aria-hidden="true" /></Link>
+      <div className="nav-actions"><Link to={homeAnchor('#demo')} className="button button--primary nav-cta">Solicitar demo<ArrowUpRight size={18} aria-hidden="true" /></Link>
         <button ref={trigger} type="button" className="icon-button menu-trigger" aria-expanded={open} aria-controls="mobile-navigation"
           aria-label={open ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setOpen(v => !v)}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button>
       </div>
       <div ref={panel} className="mobile-navigation" id="mobile-navigation" data-open={open} inert={!open}
         onBlur={e => { if (open && e.relatedTarget && !e.currentTarget.contains(e.relatedTarget as Node) && e.relatedTarget !== trigger.current) close(); }}>
         {navItems.map(item => <Link to={homeAnchor(item.href)} key={item.href} onClick={() => close()}>{item.label}<ArrowUpRight size={18} aria-hidden="true" /></Link>)}
-        <Link to={homeAnchor('#piloto')} onClick={() => close()}>Unirme al piloto<ArrowUpRight size={18} aria-hidden="true" /></Link>
+        <Link to={homeAnchor('#demo')} onClick={() => close()}>Solicitar demo<ArrowUpRight size={18} aria-hidden="true" /></Link>
       </div>
     </nav>
   </header>;

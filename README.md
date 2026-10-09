@@ -30,7 +30,8 @@
 Landing implementada con React 19, TypeScript, Vite y Tailwind. Presenta el
 producto mediante fotografía de Nicaragua, pantallas reales de la app y una
 demostración manual. Incluye menú móvil, detalles de experiencias, preguntas
-frecuentes y formularios diferenciados para negocios y traductores/guías.
+frecuentes, la descarga de la app, el formulario para solicitar una demo y
+los caminos de participación para negocios y traductores/guías.
 
 ## Desarrollo
 
@@ -44,8 +45,11 @@ pnpm build
 pnpm preview
 ```
 
-`dist/` es la salida de producción. No requiere claves, correo ni servicios
-externos para la vista previa actual. En este equipo, si pnpm detecta un
+`dist/` es la salida de producción. No requiere claves. El formulario de demo
+y la sección de descarga hablan con el API de K'plan (`VITE_API_URL`, por
+defecto `https://develop-api.kplan.dev`); el registro de negocios lleva al
+portal (`VITE_PORTAL_URL`). Ver `.env.example`. El API tiene que tener el
+dominio de la landing en `CORS_ALLOWED_ORIGINS`. En este equipo, si pnpm detecta un
 store distinto del existente, usar
 `--store-dir C:/Users/USUARIO/AppData/Local/pnpm/store` al instalar.
 

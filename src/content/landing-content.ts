@@ -4,6 +4,7 @@ export const navItems = [
   { label: 'Cómo funciona', href: '#producto' },
   { label: 'Qué descubrir', href: '#ciudades' },
   { label: 'Para aliados', href: '#aliados' },
+  { label: 'Descargar', href: '#descargar' },
 ];
 export const demoSteps: DemoStep[] = [
   { title: 'Descubrí lo que te rodea', description: 'Circuitos, lugares y eventos. Un punto de partida para encontrar tu próximo plan.', screen: 'home', label: 'Explorá el mapa', detail: 'El mapa y los circuitos se encuentran en la misma pantalla. Así empieza un recorrido por Granada.' },
@@ -16,10 +17,11 @@ export const experiences: Experience[] = [
   { id: 'leon', city: 'León', category: 'Cultura y patrimonio', title: 'Otra forma de mirar la ciudad.', description: 'Arquitectura, memoria y perspectivas que invitan a detenerse.', image: 'leon', alt: 'Cúpulas y balaustrada blanca del techo de la catedral de León bajo un cielo azul.', details: ['Descubrí los detalles de la arquitectura de la ciudad.', 'Conectá lugares, historias y talento local en tu próximo recorrido.', 'Las visitas, horarios y circuitos del piloto se anunciarán cuando estén confirmados.'] },
 ];
 export const faqItems = [
-  { question: '¿Ya puedo descargar K’plan?', answer: 'Estamos preparando el piloto. Por ahora podés conocer la propuesta y explorar la demostración de la app en esta página. La descarga pública todavía no está disponible.' },
+  { question: '¿Ya puedo descargar K’plan?', answer: 'Cuando el equipo publica una versión del piloto, la encontrás en la sección Descargar de esta página, con el instalador para tu sistema. La versión para iPhone todavía no está disponible.' },
   { question: '¿La demostración permite reservar?', answer: 'No. Es una vista previa del diseño de la aplicación. Las fechas, precios, reseñas y cantidades que aparecen en las pantallas son ejemplos; no representan disponibilidad ni reservas reales.' },
-  { question: '¿Cómo puede participar mi negocio?', answer: 'Estamos preparando la participación de negocios locales y emprendimientos. Podés explorar el formulario para negocios y revisar los datos que necesitaremos. El envío de solicitudes se habilitará más adelante.' },
-  { question: '¿Hay espacio para traductores y guías?', answer: 'Sí, el talento local forma parte de la propuesta. El formulario de talento permite preparar información de traducción, interpretación o guía turística. Las condiciones de participación se definirán durante el piloto.' },
+  { question: '¿Cómo puede participar mi negocio?', answer: 'Registrá tu negocio en el portal de K’plan: completás los datos de tu emprendimiento, subís sus documentos y el equipo revisa la solicitud. Si querés conocer la plataforma antes, pedí una demostración desde esta página.' },
+  { question: '¿Hay espacio para traductores y guías?', answer: 'Sí. Guías, traductores e intérpretes se postulan desde la app, con su cédula, su récord de policía y su licencia del INTUR o su certificado de idiomas. El equipo revisa los documentos antes de habilitar el acceso.' },
+  { question: '¿Cómo pido una demostración?', answer: 'Completá el formulario de la sección Solicitá una demo con tus datos y los de tu organización. El equipo te escribe para coordinar una demostración guiada de la app y del portal.' },
   { question: '¿En qué ciudades estará disponible?', answer: 'K’plan se inspira en diez ciudades de la Red Nacional de Ciudades Creativas: Bluefields, Estelí, Granada, Juigalpa, León, Managua, Masaya, Matagalpa, Nagarote y San Juan de Oriente. Las ciudades y los circuitos disponibles durante el piloto se confirmarán antes del lanzamiento.' },
 ];
 export const photoCredits = [

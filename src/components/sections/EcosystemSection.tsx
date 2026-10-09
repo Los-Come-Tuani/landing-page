@@ -11,9 +11,9 @@ export function EcosystemSection({ onChoose }: { onChoose: (profile: Participant
       </div>
     </div>
     <div className="audience-paths">
-      <article><Store className="audience-icon" aria-hidden="true" /><h3>Tu negocio, en el recorrido.</h3><p>Gastronomía, artesanía y experiencias que merecen ser descubiertas. Prepará el perfil de tu emprendimiento.</p><a href="#piloto" className="text-link" onClick={() => onChoose('negocio')}>Sumar mi negocio<ArrowUpRight size={18} aria-hidden="true" /></a></article>
+      <article><Store className="audience-icon" aria-hidden="true" /><h3>Tu negocio, en el recorrido.</h3><p>Gastronomía, artesanía y experiencias que merecen ser descubiertas. Registrá tu emprendimiento en el portal.</p><a href="#piloto" className="text-link" onClick={() => onChoose('negocio')}>Sumar mi negocio<ArrowUpRight size={18} aria-hidden="true" /></a></article>
       <article><Languages className="audience-icon" aria-hidden="true" /><h3>Tu talento, más cerca.</h3><p>Guías, traductores e intérpretes: ayudá a otras personas a conocer el territorio y conectar con su cultura.</p><a href="#piloto" className="text-link" onClick={() => onChoose('traductor')}>Participar como talento local<ArrowUpRight size={18} aria-hidden="true" /></a></article>
-      <article><Landmark className="audience-icon" aria-hidden="true" /><h3>Una ciudad que se conecta.</h3><p>La propuesta integra circuitos y agenda cultural con la oferta local. Las colaboraciones se definirán durante el piloto.</p><a href="#preguntas" className="text-link">Conocer esta primera etapa<ArrowUpRight size={18} aria-hidden="true" /></a></article>
+      <article><Landmark className="audience-icon" aria-hidden="true" /><h3>Una ciudad que se conecta.</h3><p>La propuesta integra circuitos y agenda cultural con la oferta local. Pedí una demostración para conocer cómo publicar los de tu ciudad.</p><a href="#demo" className="text-link">Solicitar una demo<ArrowUpRight size={18} aria-hidden="true" /></a></article>
     </div>
     <p className="audience-footnote">La propuesta también contempla insignias y beneficios locales para acompañar nuevos descubrimientos.</p>
   </div></section>;

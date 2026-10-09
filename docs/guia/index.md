@@ -28,5 +28,8 @@ pnpm build
 pnpm preview
 ```
 
-`dist/` es la salida de producción. No requiere claves, correo ni servicios
-externos para la vista previa actual.
+`dist/` es la salida de producción. No requiere claves. El formulario de demo
+y la sección de descarga hablan con el API de K'plan: sin variables usan
+`https://develop-api.kplan.dev`. Para otro API, copiá `.env.example` a
+`.env.local` y cambiá `VITE_API_URL` (el API tiene que tener el origen de la
+landing en `CORS_ALLOWED_ORIGINS`; ver [Deploy](despliegue.md)).

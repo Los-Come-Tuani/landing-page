@@ -184,6 +184,34 @@ main:focus { outline: none; }
 .traveler-panel > svg { color: var(--action-primary); margin-bottom: 24px; }
 .traveler-panel p { margin-top: 20px; color: var(--text-secondary); }
 .traveler-panel .button { margin-top: 32px; }
+.panel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: 32px; }
+.panel-actions .button { margin-top: 0; }
+.form-notice--error { color: var(--action-primary); }
+.participation-form > .button:disabled { opacity: .7; cursor: progress; }
+.form-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.demo-sent h3 { font-size: 1.25rem; }
+.demo-sent .button { margin-top: 28px; }
+.download-section { background: white; border-top: 1px solid #e8ebeb; }
+.download-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; padding: 0; margin: 0; list-style: none; }
+.download-card { display: flex; flex-direction: column; align-items: start; padding: 28px; border: 1px solid var(--border-default); border-radius: 12px; background: var(--surface-page); }
+.download-icon { width: 28px; height: 28px; color: var(--route-green); margin-bottom: 20px; }
+.download-card h3 { font-size: 1.25rem; }
+.download-meta { margin-top: 8px; font-size: .875rem; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.download-notes { margin-top: 16px; font-size: .875rem; white-space: pre-line; }
+.download-body { flex: 1; margin-bottom: 24px; }
+.download-card .button { width: 100%; }
+.download-hint { margin-top: 12px; font-size: .75rem; color: var(--text-secondary); }
+.download-status { color: var(--text-secondary); font-size: 1rem; }
+.download-empty { padding: 28px; border: 1px dashed var(--border-default); border-radius: 12px; }
+.download-empty p { font-size: 1rem; color: var(--text-secondary); }
+.download-empty strong { color: var(--text-primary); font-weight: 600; }
+.download-empty .text-link { margin-top: 8px; }
+.download-footnote { margin-top: 24px; font-size: .75rem; color: var(--text-secondary); }
+.demo-request-section { background: var(--surface-cultural); }
+.demo-request-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
+.demo-request-audiences { display: flex; flex-direction: column; gap: 16px; padding: 0; margin: 40px 0 0; list-style: none; }
+.demo-request-audiences li { display: flex; align-items: start; gap: 14px; font-size: .9375rem; color: #625f54; }
+.demo-request-audiences svg { color: var(--route-green); margin-top: 2px; }
 .detail-dialog { width: min(680px, calc(100% - 40px)); max-height: calc(100dvh - 48px); padding: 28px; border: 0; border-radius: 12px; background: white; color: var(--text-primary); }
 body:has(.detail-dialog[open]) { overflow: hidden; }
 .detail-dialog::backdrop { background: rgb(15 25 20 / .5); }
@@ -222,7 +250,7 @@ body:has(.detail-dialog[open]) { overflow: hidden; }
 }
 @media (max-width: 1100px) {
   .nav-links { gap: 24px; margin-left: 0; }
-  .demo-layout, .audience-intro, .faq-layout, .pilot-layout, .pilot-heading { gap: 48px; }
+  .demo-layout, .audience-intro, .faq-layout, .pilot-layout, .pilot-heading, .demo-request-layout { gap: 48px; }
   .experience-layout { gap: 32px; }
   .experience:not(.experience--featured) { grid-template-columns: 40% 1fr; gap: 20px; }
   .hero-device { right: 5%; }
@@ -258,6 +286,7 @@ body:has(.detail-dialog[open]) { overflow: hidden; }
   .faq-layout { grid-template-columns: 1fr 1.3fr; gap: 32px; }
   .pilot-heading { gap: 32px; }
   .pilot-layout { grid-template-columns: .8fr 1.2fr; gap: 32px; }
+  .demo-request-layout { grid-template-columns: 1fr; gap: 40px; }
   .pilot-form-surface { padding: 24px; }
   .form-fields { grid-template-columns: 1fr; }
   .footer-top { gap: 32px; }
@@ -319,6 +348,8 @@ body:has(.detail-dialog[open]) { overflow: hidden; }
   .faq-list { margin-top: 32px; }
   .faq-item summary { font-size: .875rem; min-height: 72px; gap: 16px; }
   .faq-item > p { padding-right: 12px; }
+  .demo-request-audiences { margin-top: 28px; }
+  .download-card { padding: 24px; }
   .pilot-heading { display: block; margin-bottom: 32px; }
   .pilot-heading > p { margin-top: 24px; }
   .pilot-layout { display: block; }
