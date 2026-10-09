@@ -171,8 +171,6 @@ main:focus { outline: none; }
 .form-field input::placeholder, .form-field textarea::placeholder { color: var(--text-secondary); opacity: 1; }
 .form-field [aria-invalid="true"] { border-color: var(--action-primary); }
 .field-error { color: var(--action-primary); font-size: .75rem; display: flex; align-items: center; gap: 6px; margin-top: 6px; }
-.form-notice { display: flex; align-items: start; gap: 10px; padding: 12px 0; margin-top: 16px; color: var(--text-secondary); font-size: .75rem; line-height: 1.65; }
-.form-notice > svg { margin-top: 2px; }
 .participation-form > .button { margin-top: 8px; width: 100%; }
 .form-privacy { margin-top: 12px; font-size: .75rem; line-height: 1.6; color: var(--text-secondary); }
 .form-review > p { color: var(--text-secondary); font-size: 1rem; margin-top: 8px; }
@@ -187,7 +185,6 @@ main:focus { outline: none; }
 .traveler-panel .button { margin-top: 32px; }
 .panel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: 32px; }
 .panel-actions .button { margin-top: 0; }
-.form-notice--error { color: var(--action-primary); }
 .participation-form > .button:disabled { opacity: .7; cursor: progress; }
 .form-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .demo-sent h3 { font-size: 1.25rem; }
@@ -209,7 +206,9 @@ main:focus { outline: none; }
 .download-empty { padding: 28px; border: 1px dashed var(--border-default); border-radius: 12px; }
 .download-empty p { font-size: 1rem; color: var(--text-secondary); }
 .download-empty strong { color: var(--text-primary); font-weight: 600; }
-.download-empty .text-link { margin-top: 8px; }
+.download-empty-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; margin-top: 16px; }
+.button[aria-disabled="true"] { opacity: .7; cursor: progress; }
+.download-footnote-link { color: var(--action-primary); text-decoration: underline; text-underline-offset: 4px; }
 .download-footnote { margin-top: 24px; font-size: .75rem; color: var(--text-secondary); }
 .demo-request-section { background: var(--surface-cultural); }
 .demo-request-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
