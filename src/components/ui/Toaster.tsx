@@ -33,7 +33,7 @@ function ToastItem({ toast, hidden, onDismiss }: { toast: Toast; hidden: boolean
   </li>;
 }
 
-/** Snackbars de la landing: abajo, hasta tres a la vez, y anunciados a los lectores de pantalla. */
+/** Snackbars de la landing: abajo (a la izquierda en escritorio, lejos del formulario), hasta tres a la vez, y anunciados a los lectores de pantalla. */
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [said, setSaid] = useState({ polite: '', assertive: '' });
