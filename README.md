@@ -55,9 +55,25 @@ que funciona en cualquier puerto sin CORS. En este equipo, si pnpm detecta un
 store distinto del existente, usar
 `--store-dir C:/Users/USUARIO/AppData/Local/pnpm/store` al instalar.
 
-## Deploy en Vercel
+## Publicación y API en Azure
 
-La configuración está lista para dos formas de importación:
+https://kplan.dev es el build de la rama `main`, publicado en Railway. El
+formulario de demo y la sección de descarga hablan con
+`https://azure-api.kplan.dev` (el valor por defecto de `VITE_API_URL`), el API
+desplegado en Azure App Service.
+
+El API de Azure corre siempre el código de la rama `production` del
+[repositorio del API](https://github.com/Los-Come-Tuani/api): cada `push` a esa
+rama lo construye y lo despliega con GitHub Actions, y la imagen queda
+etiquetada con el SHA del commit. Cómo se despliega y cómo comprobar qué commit
+corre en Azure está en la sección
+[Despliegue en Azure](https://github.com/Los-Come-Tuani/api#despliegue-en-azure)
+de su README. El App Service del API tiene que tener `https://kplan.dev` y
+`https://www.kplan.dev` en `CORS_ALLOWED_ORIGINS`.
+
+### Vercel
+
+La configuración también está lista para Vercel, con dos formas de importación:
 
 - Si conectás la carpeta raíz del proyecto, Vercel usará `../vercel.json`,
   instalará y compilará dentro de `LandingPage`, y publicará
